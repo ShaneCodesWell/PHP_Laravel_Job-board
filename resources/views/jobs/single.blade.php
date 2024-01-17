@@ -156,6 +156,16 @@
             </div>
           </div>
 
+          <div class="bg-light p-3 border mt-5 rounded mb-4">
+            <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Categories</h3>
+            <ul class="list-unstyled pl-3 mb-0">
+              @foreach ($categories as $category)
+                <li class="mb-2"><a href="#">{{ $category->name }}</a></li>
+              @endforeach
+              
+            </ul>
+          </div>
+
         </div>
       </div>
     </div>
