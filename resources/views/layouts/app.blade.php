@@ -64,6 +64,9 @@
                                   <a class="dropdown-item" href="{{ route('saved.jobs') }}">
                                     Saved Jobs
                                   </a>
+                                  <a class="dropdown-item" href="{{ route('edit.Details') }}">
+                                    Update Details
+                                  </a>
                                   <a class="dropdown-item" href="{{ route('applications') }}">
                                     Applications
                                   </a>

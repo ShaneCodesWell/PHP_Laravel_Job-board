@@ -52,7 +52,7 @@
             <div class="container">
 
                   <div class="alert alert-success">
-                    <p>There are no jobs in this category.</p>
+                    <p>There are no applications just yet.</p>
                   </div>
    
               </div>
