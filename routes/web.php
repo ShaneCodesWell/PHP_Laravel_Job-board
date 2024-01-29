@@ -32,3 +32,4 @@ Route::get('/users/applications/', [App\Http\Controllers\Users\UsersController::
 Route::get('/users/savedjobs/', [App\Http\Controllers\Users\UsersController::class, 'savedJobs'])->name('saved.jobs');
 
 Route::get('/users/edit-details/', [App\Http\Controllers\Users\UsersController::class, 'editDetails'])->name('edit.Details');
+Route::post('/users/edit-details', [App\Http\Controllers\Users\UsersController::class, 'updateDetails'])->name('update.details');
