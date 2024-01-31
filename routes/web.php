@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Jobs\JobsController;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +35,8 @@ Route::get('/users/savedjobs/', [App\Http\Controllers\Users\UsersController::cla
 
 Route::get('/users/edit-details/', [App\Http\Controllers\Users\UsersController::class, 'editDetails'])->name('edit.Details');
 Route::post('/users/edit-details', [App\Http\Controllers\Users\UsersController::class, 'updateDetails'])->name('update.details');
+
+Route::get('/users/edit-cv/', [App\Http\Controllers\Users\UsersController::class, 'editCV'])->name('edit.cv');
+// Route::post('/users/edit-cv', [App\Http\Controllers\Users\UsersController::class, 'updateCV'])->name('update.cv');
+
+Route::post('/users/update-cv/{id}', [App\Http\Controllers\Users\UsersController::class, 'updateCV'])->name('update.cv');

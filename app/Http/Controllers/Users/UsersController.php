@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Job\Application;
 use App\Models\Job\JobSaved;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -58,5 +59,51 @@ class UsersController extends Controller
             return redirect('/users/edit-details/')->with('update', 'User details updated successfully');
         }
     }
+
+    public function editCV() {
+
+        return view('users.editcv');
+    }
+
+    public function updateCV(Request $request, $id) {
+        // Find the user by ID
+        $oldCV = User::find(Auth::user()->$id);
+    
+        // Check if the user is found
+        if ($oldCV) {
+            // Construct the path to the existing CV file
+            $path = 'assets/cvs/' . $oldCV->cv;
+    
+            // Check if the file exists in the storage disk
+            if (Storage::exists($path)) {
+                // Delete the existing file
+                Storage::delete($path);
+            } else {
+                // File does not exist
+                // You can handle this case if needed
+            }
+    
+            // Set the destination path for the new CV
+            $destinationPath = 'assets/cv';
+    
+            // Get the original name of the uploaded file
+            $mycv = $request->cv->getClientOriginalName();
+    
+            // Move the uploaded file to the destination path with the original name
+            $request->cv->storeAs($destinationPath, $mycv);
+    
+            // Update the user's CV property
+            $oldCV->update([
+                "cv" => $mycv
+            ]);
+    
+            return redirect('/users/profile/')->with('update', 'CV updated Successfully');
+        } else {
+            // User not found, handle this case as needed
+            return redirect('/users/profile/')->with('error', 'User not found');
+        }
+    }
+
+    
 
 }
