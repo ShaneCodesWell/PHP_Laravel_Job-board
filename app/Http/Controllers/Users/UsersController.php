@@ -67,7 +67,7 @@ class UsersController extends Controller
 
     public function updateCV(Request $request, $id) {
         // Find the user by ID
-        $oldCV = User::find(Auth::user()->$id);
+        $oldCV = User::find($id);
     
         // Check if the user is found
         if ($oldCV) {
@@ -103,6 +103,7 @@ class UsersController extends Controller
             return redirect('/users/profile/')->with('error', 'User not found');
         }
     }
+    
 
     
 
