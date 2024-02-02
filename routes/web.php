@@ -23,6 +23,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
+Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 
 Route::group(['prefix' => 'jobs'], function() {
     Route::get('/single/{id}', [App\Http\Controllers\Jobs\JobsController::class, 'single'])->name('single.job');
