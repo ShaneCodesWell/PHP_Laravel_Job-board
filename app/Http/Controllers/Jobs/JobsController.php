@@ -8,7 +8,7 @@ use App\Models\Job\Job;
 use App\Models\Category\Category; 
 use App\Models\Job\JobSaved;
 use App\Models\Job\Application;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class JobsController extends Controller
 {
@@ -82,6 +82,26 @@ class JobsController extends Controller
             }
         }
     } 
+
+    public function search(Request $request)
+    {
+        Request()->validate([
+            "job_title" => "required",
+            "job_region" => "required",
+            "job_type" => "required",
+        ]);
+
+        $job_title = $request->get('job_title');
+        $job_region = $request->get('job_region');
+        $job_type = $request->get('job_type');
+
+        $searches = Job::select()->where('job_title', 'like', "%$job_title%")
+         ->where('job_region', 'like', "%$job_region%")
+         ->where('job_type', 'like', "%$job_type%")
+         ->get();
+
+        return view('jobs.search', compact('searches'));
+    }
 
 
     

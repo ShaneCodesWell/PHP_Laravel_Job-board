@@ -2,15 +2,16 @@
 
 @section('content')
 
+<!-- HOME -->
 <section class="section-hero overlay inner-page bg-image" style="background-image: url('{{ asset ('assets/images/hero_1.jpg')}}'); margin-top: -24px;" id="home-section">
     <div class="container">
       <div class="row">
         <div class="col-md-7">
-          <h1 class="text-white font-weight-bold">{{ $name }}</h1>
+          <h1 class="text-white font-weight-bold">Search Results</h1>
           <div class="custom-breadcrumbs">
             <a href="#">Home</a> <span class="mx-2 slash">/</span>
             <a href="#">Job</a> <span class="mx-2 slash">/</span>
-            <span class="text-white"><strong>{{ $name }}</strong></span>
+            <span class="text-white"><strong>Search Results</strong></span>
           </div>
         </div>
       </div>
@@ -22,13 +23,13 @@
 
         <div class="row mb-5 justify-content-center">
             <div class="col-md-7 text-center">
-                <h2 class="section-title mb-2">{{ $name }}</h2>
+                <h2 class="section-title mb-2">Search Results</h2>
             </div>
         </div>
 
         <ul class="job-listings mb-5">
-            @if ($jobs->count() > 0)
-                @foreach ($jobs as $job)
+            @if ($searches->count() > 0)
+                @foreach ($searches as $job)
                     <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
                         <a href="{{ route('single.job', $job->id) }}"></a>
                         <div class="job-listing-logo">
@@ -53,7 +54,7 @@
                 <li class="job-listing d-block">
                     <div class="container">
                         <div class="alert alert-success">
-                            <p>There are no jobs in this category.</p>
+                            <p>There are no jobs in this search.</p>
                         </div>
                     </div>
                 </li>
@@ -61,4 +62,7 @@
         </ul>
     </div>
 </section>
+
+
+
 @endsection
