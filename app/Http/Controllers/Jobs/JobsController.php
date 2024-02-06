@@ -8,6 +8,7 @@ use App\Models\Job\Job;
 use App\Models\Category\Category; 
 use App\Models\Job\JobSaved;
 use App\Models\Job\Application;
+use App\Models\Job\Search;
 use Illuminate\Support\Facades\Auth;
 
 class JobsController extends Controller
@@ -89,6 +90,10 @@ class JobsController extends Controller
             "job_title" => "required",
             "job_region" => "required",
             "job_type" => "required",
+        ]);
+
+        Search::Create([
+            "keyword" => $request->job_title
         ]);
 
         $job_title = $request->get('job_title');
