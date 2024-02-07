@@ -39,7 +39,7 @@
                 <input name="job_title" type="text" class="form-control form-control-lg" placeholder="Job title">
               </div>
               <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                <select name="job_title" class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Region">
+                <select name="job_region" class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Region">
                   <option>Anywhere</option>
                   <option>San Francisco</option>
                   <option>Palo Alto</option>
