@@ -29,8 +29,13 @@ class JobsController extends Controller
             ->take(5)
             ->count();
 
+            //Categories
+            $categories = Category::all();
+
             //Save Job
-            $savedJob = JobSaved::where('job_id', $id)
+
+            if(auth()->user()) {
+                $savedJob = JobSaved::where('job_id', $id)
             ->where('user_id', Auth::user()->id)
             ->count();
 
@@ -39,11 +44,14 @@ class JobsController extends Controller
             ->where('job_id', $id)
             ->count();
 
-            //Categories
-            $categories = Category::all();
+            return view('jobs.single', compact('job', 'relatedJobs', 'relatedJobsCount', 'savedJob', 'appliedJob', 'categories'));
+                }
+                else {
+                    return view('jobs.single', compact('job', 'relatedJobs', 'relatedJobsCount', 'categories'));
+                }
+        }
 
-        return view('jobs.single', compact('job', 'relatedJobs', 'relatedJobsCount', 'savedJob', 'appliedJob', 'categories'));
-    }
+            
 
     public function saveJob(Request $request) {
 

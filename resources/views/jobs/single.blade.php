@@ -87,26 +87,28 @@
 
           <div class="row mb-5">
             <div class="col-6">
-              <form action="{{ route('save.job')}}" method="POST">
-                @csrf
-                <input name="job_id" type="hidden" value="{{ $job->id }}">
-                <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
-                <input name="image" type="hidden" value="{{ $job->image }}">
-                <input name="job_title" type="hidden" value="{{ $job->job_title }}">
-                <input name="job_region" type="hidden" value="{{ $job->job_region }}">
-                <input name="job_type" type="hidden" value="{{ $job->job_type }}">
-                <input name="company" type="hidden" value="{{ $job->company }}">
+              @if(isset (Auth::user()->id))
+                <form action="{{ route('save.job')}}" method="POST">
+                  @csrf
+                  <input name="job_id" type="hidden" value="{{ $job->id }}">
+                  <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                  <input name="image" type="hidden" value="{{ $job->image }}">
+                  <input name="job_title" type="hidden" value="{{ $job->job_title }}">
+                  <input name="job_region" type="hidden" value="{{ $job->job_region }}">
+                  <input name="job_type" type="hidden" value="{{ $job->job_type }}">
+                  <input name="company" type="hidden" value="{{ $job->company }}">
 
-                @if ($savedJob > 0)
-                  <button class="btn btn-block btn-success btn-md" disabled>You have saved this job!</button>
+                  @if ($savedJob > 0)
+                    <button class="btn btn-block btn-success btn-md" disabled>You have saved this job!</button>
 
-                @else
-                  <button name="submit" type="submit" class="btn btn-block btn-light btn-md"><i class="icon-heart"></i> Save Job</button>
+                  @else
+                    <button name="submit" type="submit" class="btn btn-block btn-light btn-md"><i class="icon-heart"></i> Save Job</button>
 
-                @endif
-                
-                <!--add text-danger to it to make it read-->
-              </form>
+                  @endif
+                  
+                  <!--add text-danger to it to make it read-->
+                </form>
+              @endif
             </div>
 
 
@@ -119,12 +121,15 @@
                 <input name="job_region" type="hidden" value="{{ $job->job_region }}">
                 <input name="job_type" type="hidden" value="{{ $job->job_type }}">
                 <input name="company" type="hidden" value="{{ $job->company }}">
-                @if ($appliedJob > 0)
-                <button class="btn btn-block btn-primary btn-md" disabled>You have already applied for this job</button>
+                @if(isset(Auth::user()->id))
+                  @if ($appliedJob > 0)
+                  <button class="btn btn-block btn-primary btn-md" disabled>You have already applied for this job</button>
+                  @else
+                  <button type="submit" name="submit" class="btn btn-block btn-primary btn-md">Apply Now</button>
+                  @endif
                 @else
-                <button type="submit" name="submit" class="btn btn-block btn-primary btn-md">Apply Now</button>
+                <a href="{{ route('login') }}" class="btn btn-block btn-primary btn-md">Log In to apply for this job</a>
                 @endif
-                
               </form>
             </div>
 

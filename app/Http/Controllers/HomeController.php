@@ -13,10 +13,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -32,6 +32,7 @@ class HomeController extends Controller
         ->select('keyword', DB::raw('COUNT(*) as `count`'))
         ->groupBy('keyword')
         ->havingRaw('COUNT(*) > 1')
+        
         ->orderBy('count','asc')
         ->get();
 
