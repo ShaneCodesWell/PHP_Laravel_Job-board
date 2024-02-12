@@ -50,3 +50,8 @@ Route::group(['prefix' => 'users'], function() {
     Route::get('edit-cv/', [App\Http\Controllers\Users\UsersController::class, 'editCV'])->name('edit.cv');
     Route::post('edit-cv/{id}', [App\Http\Controllers\Users\UsersController::class, 'updateCV'])->name('update.cv');
 });
+
+Route::get('admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->name('view.login');
+Route::post('admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('check.login');
+
+Route::get('admin', [App\Http\Controllers\Admins\AdminsController::class, 'index'])->name('admins.dashboard');
