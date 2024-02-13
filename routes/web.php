@@ -51,7 +51,9 @@ Route::group(['prefix' => 'users'], function() {
     Route::post('edit-cv/{id}', [App\Http\Controllers\Users\UsersController::class, 'updateCV'])->name('update.cv');
 });
 
-Route::get('admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->name('view.login');
+Route::get('admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->name('view.login')->middleware('checkforauth');
 Route::post('admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('check.login');
 
-Route::get('admin', [App\Http\Controllers\Admins\AdminsController::class, 'index'])->name('admins.dashboard');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
+Route::get('/', [App\Http\Controllers\Admins\AdminsController::class, 'index'])->name('admins.dashboard');
+});
