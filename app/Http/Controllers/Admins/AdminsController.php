@@ -99,4 +99,28 @@ class AdminsController extends Controller
         }
     
     }
+
+    public function editCategories($id) {
+
+        $category = Category::find($id);
+
+        return view("admins.edit-categories", compact('category'));
+    }
+
+    public function updateCategories(Request $request, $id) {
+
+        Request()->validate([
+            "name" => "required|max:40",
+        ]);
+        
+        $categoryUpdate = Category::find($id);
+
+        $categoryUpdate->update([
+            "name" => $request->name,
+        ]);
+
+        if($categoryUpdate) {
+            return redirect('/admin/display-categories')->with('update', 'Category updated successfully');
+        }
+    }
 }
