@@ -123,4 +123,14 @@ class AdminsController extends Controller
             return redirect('/admin/display-categories')->with('update', 'Category updated successfully');
         }
     }
+
+    public function deleteCategories($id) {
+
+        $deletecategory = Category::find($id);
+        $deletecategory -> delete();
+
+        if($deletecategory) {
+            return redirect('/admin/display-categories')->with('delete', 'Category deleted successfully');
+        }    
+    }
 }
