@@ -133,4 +133,12 @@ class AdminsController extends Controller
             return redirect('/admin/display-categories')->with('delete', 'Category deleted successfully');
         }    
     }
+
+    //Jobs//
+    public function allJobs() {
+
+        $jobs = Job::all();
+
+        return view('admins.all-jobs', compact('jobs'));   
+    }
 }
