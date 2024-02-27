@@ -26,6 +26,7 @@ class Job extends Model
         'responsibilities',
         'education_experience',
         'other_benefits',
+        'category',
         'image',
     ];
     public $timestamps = true;
