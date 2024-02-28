@@ -151,11 +151,23 @@ class AdminsController extends Controller
 
     public function storeJobs(Request $request) {
 
-        // Request()->validate([
-        //     "name" => "required|max:40",
-        //     "email" => "required|max:40",
-        //     "password" => "required",
-        // ]);
+        Request()->validate([
+            "job_title" => "required|max:40",
+            "job_region" => "required|max:40",
+            "company" => "required",
+            "job_type" => "required",
+            "vacancy" => "required",
+            "experience" => "required",
+            "salary" => "required",
+            "gender" => "required",
+            "application_deadline" => "required",
+            "job_description" => "required",
+            "responsibilities" => "required",
+            "education_experience" => "required",
+            "other_benefits" => "required",
+            "category" => "required",
+            "image" => "image",
+        ]);
         
 
         $destinationPath = 'assets/images';
