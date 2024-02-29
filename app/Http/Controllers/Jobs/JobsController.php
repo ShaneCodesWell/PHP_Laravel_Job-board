@@ -79,6 +79,7 @@ class JobsController extends Controller
                 'cv' => Auth::user()->cv,
                 'job_id' => $request->job_id,
                 'user_id' => Auth::user()->id,
+                'email' => Auth::user()->email,
                 'image' => $request->image,
                 'job_title' => $request->job_title,
                 'job_region' => $request->job_region,
