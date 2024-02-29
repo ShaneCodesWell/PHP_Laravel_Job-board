@@ -225,5 +225,15 @@ class AdminsController extends Controller
        
     }
 
+    public function deleteApps($id) {
+
+        $deleteApp = Application::find($id);
+    
+        $deleteApp->delete();
+    
+        if($deleteApp) {
+            return redirect('admin/display-apps/')->with('delete', 'Application deleted successfully');
+        }  
+    }
     
 }
