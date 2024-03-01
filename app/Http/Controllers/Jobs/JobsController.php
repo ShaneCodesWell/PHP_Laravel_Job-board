@@ -10,6 +10,7 @@ use App\Models\Job\JobSaved;
 use App\Models\Job\Application;
 use App\Models\Job\Search;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class JobsController extends Controller
 {
@@ -30,7 +31,11 @@ class JobsController extends Controller
             ->count();
 
             //Categories
-            $categories = Category::all();
+            $categories = DB::table('categories')
+            ->join('jobs', 'jobs.category', '=', 'categories.name')
+            ->select('categories.name AS name', 'categories.id AS id', DB::raw('COUNT(jobs.category) AS total'))
+            ->groupBy('jobs.category')
+            ->get();
 
             //Save Job
 
